@@ -4,7 +4,6 @@
  */
 package betaproyecto;
 
-import java.util.LinkedList;
 
 /**
  *

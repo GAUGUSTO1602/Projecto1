@@ -13,7 +13,7 @@ import java.util.LinkedList;
 public class Grafo {
     int numVerts;
     static int maxVerts = 20;
-    Vertice [] tablAdc;
+    private Vertice [] tablAdc;
 
     public Grafo(int mx){
         tablAdc = new Vertice[mx];
@@ -29,11 +29,11 @@ public class Grafo {
         return tablAdc;
     }
 
-    public LinkedList listaAdcy(int v) throws Exception {
+    public Lista listaAdcy(int v) throws Exception {
         if (v < 0 || v >= numVerts){
             throw new Exception("Vertice fuera de rango");
         }
-        return tablAdc[v].lad;
+        return tablAdc[v].getLad();
     }
    
     public int numVertice(String nombre) {
@@ -65,7 +65,7 @@ public class Grafo {
         if (v1 < 0 || v2 < 0){
             throw new Exception("El vertice no existe");
         }
-        if (tablAdc[v1].lad.contains(new Arco(v2))){
+        if (tablAdc[v1].getLad().buscarArco(new Arco(v2))){
             return true;
         } else{
             return false;        
@@ -73,7 +73,7 @@ public class Grafo {
     }
 
     boolean adyacente(int v1, int v2) throws Exception{
-        if (tablAdc[v1].lad.contains(new Arco(v2))){
+        if (tablAdc[v1].getLad().buscarArco(new Arco(v2))){
             return true;
         } else{
             return false;
@@ -88,7 +88,8 @@ public class Grafo {
                 throw new Exception("El vertice no existe");
             }
             Arco ab = new Arco(v2);
-            tablAdc[v1].lad.addFirst(ab);
+            tablAdc[v1].getLad().añadirAlInicio(ab);
+            //tablAdc[v1].getLad().addFirst(ab);
         }
     }
 
@@ -99,7 +100,7 @@ public class Grafo {
             throw new Exception("El vertice no existe");
         }
         Arco ab = new Arco(v2);
-        tablAdc[v1].lad.remove(ab);
+        tablAdc[v1].getLad().borrarNodo(ab);
     }
     
 

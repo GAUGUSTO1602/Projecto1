@@ -4,21 +4,46 @@
  */
 package betaproyecto;
 
-import java.util.LinkedList;
+
 
 /**
  *
  * @author veronica
  */
 public class Vertice {
-    String nombre;
-    int numVertice;
-    LinkedList<Object> lad;
+    private String nombre;
+    private int numVertice;
+    private Lista lad;
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getNumVertice() {
+        return numVertice;
+    }
+
+    public void setNumVertice(int numVertice) {
+        this.numVertice = numVertice;
+    }
+
+    public Lista getLad() {
+        return lad;
+    }
+
+    public void setLad(Lista lad) {
+        this.lad = lad;
+    }
+
 
     public Vertice(String x) {
         nombre = x;
         numVertice = -1;
-        lad = new LinkedList();
+        lad = new Lista();
     }
 
     public boolean equals(Object d){

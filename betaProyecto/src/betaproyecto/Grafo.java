@@ -11,14 +11,17 @@ package betaproyecto;
  */
 public class Grafo {
     int numVerts;
-    static int maxVerts = 20;
-    private Vertice [] tablAdc;
+    static int maxVerts;
+    Vertice [] tablAdc;
 
     public Grafo(int mx){
         tablAdc = new Vertice[mx];
         numVerts = 0;
         maxVerts = mx;
     }
+
+
+
 
     public Grafo(){
         this(maxVerts);
@@ -87,7 +90,9 @@ public class Grafo {
                 throw new Exception("El vertice no existe");
             }
             Arco ab = new Arco(v2);
-            tablAdc[v1].getLad().añadirAlInicio(ab);
+            tablAdc[v1].getLad().añadirArco(ab);
+            Integer tamaño = tablAdc[v1].getLad().getSize() + 1;
+            tablAdc[v1].getLad().setSize(tamaño);
             //tablAdc[v1].getLad().addFirst(ab);
         }
     }

@@ -8,7 +8,7 @@ package betaproyecto;
  *
  * @author veronica
  */
-public class Arco {
+public class Arco <T> {
     int destino;
     double peso;
 

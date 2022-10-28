@@ -10,12 +10,30 @@ package betaproyecto;
  */
 public class Nodo <T> {
     private T data;
+    private Integer indice;
+    private Integer frontera;
+    private Arco arco;
     private Nodo pNext;
     private Nodo pPrevious;
+    private Nodo pNorte;
+    private Nodo pSur;
+    private Nodo pEste;
+    private Nodo pOeste;
+
+    public Nodo(Integer i){
+        this.pNext = this.pPrevious = this.pNorte = this.pSur = this.pEste = this.pOeste = null;
+        indice = i;
+        frontera = 0;
+    }
+
+    public Nodo(Arco a){
+        this.arco = a;
+        this.pNext = this.pPrevious = this.pNorte = this.pSur = this.pEste = this.pOeste = null;
+    }
 
     public Nodo(T o){
         this.data = o;
-        this.pNext = this.pPrevious = null;
+        this.pNext = this.pPrevious = this.pNorte = this.pSur = this.pEste = this.pOeste = null;
     }
 
     public Nodo getpPrevious() {
@@ -41,6 +59,63 @@ public class Nodo <T> {
     public void setpNext(Nodo pNext) {
         this.pNext = pNext;
     }
+
+    public int getIndice() {
+        return indice;
+    }
+
+    public void setIndice(int indice) {
+        this.indice = indice;
+    }
+
+    public Arco getArco() {
+        return arco;
+    }
+
+    public void setArco(Arco arco) {
+        this.arco = arco;
+    }
+
+    public Nodo getpNorte() {
+        return pNorte;
+    }
+
+    public void setpNorte(Nodo pNorte) {
+        this.pNorte = pNorte;
+    }
+
+    public Nodo getpSur() {
+        return pSur;
+    }
+
+    public void setpSur(Nodo pSur) {
+        this.pSur = pSur;
+    }
+
+    public Nodo getpEste() {
+        return pEste;
+    }
+
+    public void setpEste(Nodo pEste) {
+        this.pEste = pEste;
+    }
+
+    public Nodo getpOeste() {
+        return pOeste;
+    }
+
+    public void setpOeste(Nodo pOeste) {
+        this.pOeste = pOeste;
+    }
+
+    public Integer getFrontera() {
+        return frontera;
+    }
+
+    public void setFrontera(Integer frontera) {
+        this.frontera = frontera;
+    }
+
 
 
 }

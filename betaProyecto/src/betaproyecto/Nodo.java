@@ -12,13 +12,14 @@ public class Nodo <T> {
     private T data;
     private Integer indice;
     private Integer frontera;
-    private Arco arco;
     private Nodo pNext;
     private Nodo pPrevious;
     private Nodo pNorte;
     private Nodo pSur;
     private Nodo pEste;
     private Nodo pOeste;
+    private Nodo pEntrada;
+    private Nodo pSalida;
 
     public Nodo(Integer i){
         this.pNext = this.pPrevious = this.pNorte = this.pSur = this.pEste = this.pOeste = null;
@@ -26,10 +27,6 @@ public class Nodo <T> {
         frontera = 0;
     }
 
-    public Nodo(Arco a){
-        this.arco = a;
-        this.pNext = this.pPrevious = this.pNorte = this.pSur = this.pEste = this.pOeste = null;
-    }
 
     public Nodo(T o){
         this.data = o;
@@ -68,13 +65,6 @@ public class Nodo <T> {
         this.indice = indice;
     }
 
-    public Arco getArco() {
-        return arco;
-    }
-
-    public void setArco(Arco arco) {
-        this.arco = arco;
-    }
 
     public Nodo getpNorte() {
         return pNorte;
@@ -107,6 +97,24 @@ public class Nodo <T> {
     public void setpOeste(Nodo pOeste) {
         this.pOeste = pOeste;
     }
+
+    public Nodo getpEntrada() {
+        return pEntrada;
+    }
+
+    public void setpEntrada(Nodo pEntrada) {
+        this.pEntrada = pEntrada;
+    }
+
+    public Nodo getpSalida() {
+        return pSalida;
+    }
+
+    public void setpSalida(Nodo pSalida) {
+        this.pSalida = pSalida;
+    }
+
+
 
     public Integer getFrontera() {
         return frontera;

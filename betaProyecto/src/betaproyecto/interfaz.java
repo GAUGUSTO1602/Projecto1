@@ -4,6 +4,8 @@
  */
 package betaproyecto;
 
+import java.awt.Graphics;
+
 /**
  *
  * @author veronica
@@ -63,23 +65,35 @@ public class interfaz extends javax.swing.JFrame {
 
     private void btnLaberintoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaberintoActionPerformed
         // TODO add your handling code here:
-        try {
+        //try {
             Integer Ancho = Integer.parseInt(inpAncho.getText());
             Integer Largo = Integer.parseInt(inpLargo.getText());
-            Integer vertices = Ancho * Largo;
-            Grafo listaGrafo = new Grafo(vertices);
+            Integer count = Ancho * Largo * 100;
             Lista mLista = new Lista();
+            Lista marco = new Lista();
             mLista = mLista.crearMLista(Ancho, Largo);
-            mLista.Prim();
-            Nodo pAux = mLista.getpFirst();
-            for (int i = 0; i < 4; i++) {
-                System.out.println(pAux.getFrontera() +" "+ pAux.getpEste().getFrontera() +" "+ pAux.getpEste().getpEste().getFrontera() + " "+ pAux.getpEste().getpEste().getpEste().getFrontera());
-                pAux = pAux.getpSur();
-                
-            }
-        } catch (Exception e) {
-            System.out.println("xD");
-        }
+            marco = marco.crearMarco(mLista.getpFirst(), Ancho, Largo);
+            mLista.Prim(mLista, count);
+            marco.marcarEntrada(marco, Ancho + 2, Largo + 2);
+            marco.marcarSalida(marco, Ancho + 2, Largo + 2);
+            Matriz matriz = new Matriz();
+            matriz.setCeldas(matriz.crearMatriz(matriz.getCeldas(), Ancho + 2, Largo + 2));
+            matriz.ingresarValores(matriz.getCeldas(), mLista);
+            matriz.ingresarValoresMarco(matriz.getCeldas(), marco);
+            Laberinto lab = new Laberinto(Ancho + 2, Largo + 2, matriz.getCeldas());
+            Ventana ventana = new Ventana(lab);
+            ventana.crearVentana(ventana, marco, mLista);
+            //for (int i = 0; i < 5; i++) {
+                //System.out.println(pAux.getFrontera() + " " + pAux.getpEste().getFrontera() + " "+ pAux.getpEste().getpEste().getFrontera() +" "+ pAux.getpEste().getpEste().getpEste().getFrontera());
+               // pAux = pAux.getpSur();
+            
+            //}
+
+            
+        //} catch (Exception e) {
+            //System.out.println("xD");
+        //}
+
     }//GEN-LAST:event_btnLaberintoActionPerformed
 
     /**

@@ -74,15 +74,17 @@ public class interfaz extends javax.swing.JFrame {
             mLista = mLista.crearMLista(Ancho, Largo);
             marco = marco.crearMarco(mLista.getpFirst(), Ancho, Largo);
             mLista.Prim(mLista, count);
-            marco.marcarEntrada(marco, Ancho + 2, Largo + 2);
-            marco.marcarSalida(marco, Ancho + 2, Largo + 2);
+            Ancho = Ancho + 2;
+            Largo = Largo + 2;
+            marco.marcarEntrada(marco, Ancho, Largo);
+            marco.marcarSalida(marco, Ancho, Largo);
             Matriz matriz = new Matriz();
-            matriz.setCeldas(matriz.crearMatriz(matriz.getCeldas(), Ancho + 2, Largo + 2));
+            matriz.setCeldas(matriz.crearMatriz(matriz.getCeldas(), Ancho, Largo));
             matriz.ingresarValores(matriz.getCeldas(), mLista);
             matriz.ingresarValoresMarco(matriz.getCeldas(), marco);
-            Laberinto lab = new Laberinto(Ancho + 2, Largo + 2, matriz.getCeldas());
+            Laberinto lab = new Laberinto(Ancho, Largo, matriz.getCeldas());
             Ventana ventana = new Ventana(lab);
-            ventana.crearVentana(ventana, marco, mLista);
+            ventana.crearVentana(ventana, marco, mLista, Ancho, Largo);
             //for (int i = 0; i < 5; i++) {
                 //System.out.println(pAux.getFrontera() + " " + pAux.getpEste().getFrontera() + " "+ pAux.getpEste().getpEste().getFrontera() +" "+ pAux.getpEste().getpEste().getpEste().getFrontera());
                // pAux = pAux.getpSur();

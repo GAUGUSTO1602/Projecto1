@@ -18,8 +18,6 @@ public class Nodo <T> {
     private Nodo pSur;
     private Nodo pEste;
     private Nodo pOeste;
-    private Nodo pEntrada;
-    private Nodo pSalida;
 
     public Nodo(Integer i){
         this.pNext = this.pPrevious = this.pNorte = this.pSur = this.pEste = this.pOeste = null;
@@ -97,24 +95,6 @@ public class Nodo <T> {
     public void setpOeste(Nodo pOeste) {
         this.pOeste = pOeste;
     }
-
-    public Nodo getpEntrada() {
-        return pEntrada;
-    }
-
-    public void setpEntrada(Nodo pEntrada) {
-        this.pEntrada = pEntrada;
-    }
-
-    public Nodo getpSalida() {
-        return pSalida;
-    }
-
-    public void setpSalida(Nodo pSalida) {
-        this.pSalida = pSalida;
-    }
-
-
 
     public Integer getFrontera() {
         return frontera;

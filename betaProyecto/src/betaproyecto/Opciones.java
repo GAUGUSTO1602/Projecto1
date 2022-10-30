@@ -4,17 +4,28 @@
  */
 package betaproyecto;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author veronica
  */
 public class Opciones extends javax.swing.JFrame {
-
+JFrame ventana;
+Lista marco;
+Lista mLista;
+Integer ancho;
+Integer largo;
     /**
      * Creates new form Opciones
      */
-    public Opciones() {
+    public Opciones(JFrame ven, Lista marco, Lista mLista,Integer ancho, Integer largo) {
         initComponents();
+        this.ventana = ven;
+        this.marco = marco;
+        this.mLista = mLista;
+        this.ancho = ancho;
+        this.largo = largo;
     }
 
     /**
@@ -36,6 +47,11 @@ public class Opciones extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         DFS.setText("Depth First Search (DFS)");
+        DFS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DFSActionPerformed(evt);
+            }
+        });
         jPanel1.add(DFS, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 180, 30));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -46,6 +62,21 @@ public class Opciones extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void DFSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DFSActionPerformed
+        // TODO add your handling code here:
+        this.ventana.setVisible(false);
+        Lista marco2 = marco;
+        Lista mLista2 = mLista;
+        marco.DFS(marco2, mLista2);
+        Matriz matriz = new Matriz();
+        matriz.setCeldas(matriz.crearMatriz(matriz.getCeldas(), ancho, largo));
+        matriz.ingresarValores(matriz.getCeldas(), mLista);
+        matriz.ingresarValoresMarco(matriz.getCeldas(), marco);
+        Laberinto lab = new Laberinto(ancho, largo, matriz.getCeldas());
+        Ventana ventana = new Ventana(lab);
+        ventana.crearVentana(ventana, marco, mLista, ancho, largo);
+    }//GEN-LAST:event_DFSActionPerformed
 
     /**
      * @param args the command line arguments
@@ -75,11 +106,11 @@ public class Opciones extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        /* java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Opciones().setVisible(true);
             }
-        });
+        }); */
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -45,6 +45,11 @@ public class Laberinto {
                     grafico.fillRect(columna*40, fila*40, anchoBloque, largoBloque);
                     grafico.setColor(Color.black);
                     grafico.drawRect(columna*40, fila*40, anchoBloque, largoBloque);
+                }else if(x[fila][columna] == 6){
+                    grafico.setColor(Color.green);
+                    grafico.fillRect(columna*40, fila*40, anchoBloque, largoBloque);
+                    grafico.setColor(Color.black);
+                    grafico.drawRect(columna*40, fila*40, anchoBloque, largoBloque);
                 }else{
                     grafico.setColor(Color.white);
                     grafico.fillRect(columna*40, fila*40, anchoBloque, largoBloque);

@@ -12,6 +12,8 @@ import java.util.Random;
 public class Lista <T> {
     private Nodo <T> pFirst;
     private Nodo <T> pLast;
+    private Nodo <T> pEntrada;
+    private Nodo <T> pSalida;
     private int size;
 
     public Lista(){
@@ -51,6 +53,23 @@ public class Lista <T> {
         this.pFirst = this.pLast = null;
         this.size = 0;
     }
+
+    public Nodo<T> getpEntrada() {
+        return pEntrada;
+    }
+
+    public void setpEntrada(Nodo<T> pEntrada) {
+        this.pEntrada = pEntrada;
+    }
+
+    public Nodo<T> getpSalida() {
+        return pSalida;
+    }
+
+    public void setpSalida(Nodo<T> pSalida) {
+        this.pSalida = pSalida;
+    }
+
 
 
     public void añadirAlInicio(T x){
@@ -311,7 +330,7 @@ public class Lista <T> {
                     num = valor.nextInt(indice);
                 }else if(comprobarAlr(pAux, 1)){
                     pAux.setFrontera(4);
-                    pAux.setpEntrada(pAux);
+                    lista.setpEntrada(pAux);
                     break;
                 }else{
                     pAux = lista.getpFirst();
@@ -335,7 +354,7 @@ public class Lista <T> {
                     num = valor.nextInt(indice);
                 }else if(comprobarAlr(pAux, 1) && !comprobarAlr(pAux, 4)){
                     pAux.setFrontera(5);
-                    pAux.setpSalida(pAux);
+                    lista.setpSalida(pAux);
                     break;
                 }else{
                     pAux = lista.getpFirst();
@@ -358,6 +377,105 @@ public class Lista <T> {
             return true;
         }
         return false;
+    }
+
+    public void DFS(Lista lista, Lista mLista ){
+        Nodo pAux = lista.getpEntrada();
+        Boolean fin = false;
+        Integer i = 5;
+        pAux = moverse(pAux, 1);
+        while(fin == false){
+            if(pAux.getpNorte().getFrontera() == 1){
+                while(pAux.getpNorte().getFrontera() != 0 && pAux.getpNorte().getFrontera() != 2 ){
+                    pAux = pAux.getpNorte();
+                    pAux.setFrontera(6);
+                    if(comprobarAlr(pAux, i) == true){
+                        fin = true;
+                        break;
+                    }
+                }
+                while(fin == false && (pAux.getpSur().getFrontera() != 2 && pAux.getpSur().getFrontera() != 0 )){
+                    pAux = pAux.getpSur();
+                    if(comprobarAlr(pAux, 1) == true){
+                        break;
+                    }
+                }
+            } else if(pAux.getpSur().getFrontera() == 1){
+                while(pAux.getpSur().getFrontera() != 0 && pAux.getpSur().getFrontera() != 2 ){
+                    pAux = pAux.getpSur();
+                    pAux.setFrontera(6);
+                    if(comprobarAlr(pAux, i) == true){
+                        fin = true;
+                        break;
+                    }
+                }
+                while(fin == false && (pAux.getpNorte().getFrontera() != 2 && pAux.getpNorte().getFrontera() != 0 )){
+                    pAux = pAux.getpNorte();
+                    if(comprobarAlr(pAux, 1) == true){
+                        break;
+                    }
+                }
+            }else if(pAux.getpOeste().getFrontera() == 1){
+                while(pAux.getpOeste().getFrontera() != 0 && pAux.getpOeste().getFrontera() != 2 ){
+                    pAux = pAux.getpOeste();
+                    pAux.setFrontera(6);
+                    if(comprobarAlr(pAux, i) == true){
+                        fin = true;
+                        break;
+                    }
+                }
+                while(fin == false && (pAux.getpEste().getFrontera() != 2 && pAux.getpEste().getFrontera() != 0 )){
+                    pAux = pAux.getpEste();
+                    if(comprobarAlr(pAux, 1) == true){
+                        break;
+                    }
+                }
+            }else if(pAux.getpEste().getFrontera() == 1){
+                while(pAux.getpEste().getFrontera() != 0 && pAux.getpEste().getFrontera() != 2 ){
+                    pAux = pAux.getpEste();
+                    pAux.setFrontera(6);
+                    if(comprobarAlr(pAux, i) == true){
+                        fin = true;
+                        break;
+                    }
+                }
+                while(fin == false && (pAux.getpOeste().getFrontera() != 2 && pAux.getpOeste().getFrontera() != 0 )){
+                    pAux = pAux.getpOeste();
+                    if(comprobarAlr(pAux, 1) == true){
+                        break;
+                    }
+                }
+            }else{
+                pAux = mLista.getpFirst();
+                while(pAux.getpNext() != null){
+                    if( pAux.getFrontera() == 6 && comprobarAlr(pAux, 1) == true){
+                        pAux = moverse(pAux, 1);
+                        break;
+                    }
+                    pAux = pAux.getpNext();
+                }
+            }
+        }
+    }
+
+    public Nodo moverse(Nodo x, Integer i){
+        if(x.getpNorte() != null && x.getpNorte().getFrontera() == i){
+            x = x.getpNorte();
+            x.setFrontera(6);
+            return x;
+        }else if (x.getpSur() != null && x.getpSur().getFrontera() == i){
+            x = x.getpSur();
+            x.setFrontera(6);
+            return x;
+        }else if (x.getpOeste() != null && x.getpOeste().getFrontera() == i){
+            x = x.getpOeste();
+            x.setFrontera(6);
+            return x;
+        }else{
+            x = x.getpEste();
+            x.setFrontera(6);
+            return x;
+        }
     }
 
 }

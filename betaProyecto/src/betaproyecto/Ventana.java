@@ -25,13 +25,13 @@ public class Ventana extends JPanel {
         laberinto.paint(grafico);
     }
 
-    public void crearVentana(Ventana ven, Lista marco, Lista mLista){
+    public void crearVentana(Ventana ven, Lista marco, Lista mLista, Integer Ancho, Integer Largo){
         JFrame miVentana = new JFrame("Laberinto");
         miVentana.add(ven);
         miVentana.setSize(900, 750);
         miVentana.setLocationRelativeTo(null);
         miVentana.setVisible(true);
-        Opciones venOpciones = new Opciones();
+        Opciones venOpciones = new Opciones(miVentana, marco, mLista, Ancho, Largo);
         venOpciones.setVisible(true);
         venOpciones.setLocation(750, 0);
         venOpciones.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);

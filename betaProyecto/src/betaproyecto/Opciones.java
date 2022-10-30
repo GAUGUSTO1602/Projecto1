@@ -5,6 +5,7 @@
 package betaproyecto;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -65,7 +66,9 @@ Integer largo;
 
     private void DFSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DFSActionPerformed
         // TODO add your handling code here:
+    try {
         this.ventana.setVisible(false);
+        this.setVisible(false);
         Lista marco2 = marco;
         Lista mLista2 = mLista;
         marco.DFS(marco2, mLista2);
@@ -75,7 +78,19 @@ Integer largo;
         matriz.ingresarValoresMarco(matriz.getCeldas(), marco);
         Laberinto lab = new Laberinto(ancho, largo, matriz.getCeldas());
         Ventana ventana = new Ventana(lab);
+        Nodo pAux = mLista.getpFirst();
+        while(pAux.getpNext() != null){
+            if(pAux.getFrontera() == 6){
+                pAux.setFrontera(1);
+            }
+            pAux = pAux.getpNext();
+        }
         ventana.crearVentana(ventana, marco, mLista, ancho, largo);
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error al buscar la solución con este laberinto");
+        }
+        
     }//GEN-LAST:event_DFSActionPerformed
 
     /**

@@ -9,8 +9,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
- *
- * @author veronica
+ *Ventana crea la ventana en donde se mostrara de forma grafica el laberinto generado
+ * @author Gabriel González
  */
 public class Ventana extends JPanel {
     private Laberinto laberinto;

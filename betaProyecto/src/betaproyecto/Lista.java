@@ -4,10 +4,11 @@
  */
 package betaproyecto;
 import java.util.Random;
+import javax.swing.JOptionPane;
 
 /**
- *
- * @author veronica
+ *Clase lista
+ * @author Gabriel González
  */
 public class Lista <T> {
     private Nodo <T> pFirst;
@@ -71,19 +72,6 @@ public class Lista <T> {
     }
 
 
-
-    public void añadirAlInicio(T x){
-        Nodo nuevo = new Nodo(x);
-        if(esVacio()) {
-            this.pFirst = this.pLast = nuevo;
-        } else {
-            this.pFirst.setpPrevious(nuevo);
-            nuevo.setpNext(this.pFirst);
-            this.pFirst = nuevo;
-        }
-    }
-
-
     public void añadirAlFinalAux(Nodo x){
         Nodo nuevo = x;
         if(esVacio()) {
@@ -96,19 +84,6 @@ public class Lista <T> {
             size++; 
         }
     }
-
-
-
-    public Nodo buscar(Integer i){
-        int count = 0;
-        Nodo pAux = pFirst;
-        while(count < i){
-            pAux = pAux.getpNext();
-            count++;
-        }
-        return pAux;
-    }
-
 
 
     public Lista crearMLista(Integer Ancho, Integer Largo){
@@ -380,6 +355,8 @@ public class Lista <T> {
     }
 
     public void DFS(Lista lista, Lista mLista ){
+        long startTime = System.currentTimeMillis();
+
         Nodo pAux = lista.getpEntrada();
         Boolean fin = false;
         Integer i = 5;
@@ -448,15 +425,24 @@ public class Lista <T> {
             }else{
                 pAux = mLista.getpFirst();
                 while(pAux.getpNext() != null){
-                    if( pAux.getFrontera() == 6 && comprobarAlr(pAux, 1) == true){
+                    if(pAux.getFrontera() == 6 && comprobarAlr(pAux, 5) == true){
+                        fin = true;
+                        break;
+                    }else if( pAux.getFrontera() == 6 && comprobarAlr(pAux, 1) == true){
                         pAux = moverse(pAux, 1);
                         break;
                     }
                     pAux = pAux.getpNext();
                 }
+                if(pAux == null){
+                    fin = true;
+                }
             }
         }
+        long endTime = System.currentTimeMillis();
+        JOptionPane.showMessageDialog(null, "Tiempo de ejecución: " + (endTime - startTime));
     }
+
 
     public Nodo moverse(Nodo x, Integer i){
         if(x.getpNorte() != null && x.getpNorte().getFrontera() == i){

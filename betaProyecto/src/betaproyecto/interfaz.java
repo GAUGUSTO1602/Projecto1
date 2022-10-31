@@ -5,10 +5,11 @@
 package betaproyecto;
 
 import java.awt.Graphics;
+import javax.swing.JOptionPane;
 
 /**
- *
- * @author veronica
+ *Interfaz pide al usario los valores de ancho y de largo para generar el laberinto
+ * @author Gabriel González
  */
 public class interfaz extends javax.swing.JFrame {
 
@@ -34,6 +35,7 @@ public class interfaz extends javax.swing.JFrame {
         inpAncho = new javax.swing.JTextField();
         inpLargo = new javax.swing.JTextField();
         btnLaberinto = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -58,6 +60,10 @@ public class interfaz extends javax.swing.JFrame {
         });
         jPanel1.add(btnLaberinto, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, -1, -1));
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setText("Ingrese los valores:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, -1, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 240));
 
         pack();
@@ -65,7 +71,7 @@ public class interfaz extends javax.swing.JFrame {
 
     private void btnLaberintoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaberintoActionPerformed
         // TODO add your handling code here:
-        //try {
+        try {
             Integer Ancho = Integer.parseInt(inpAncho.getText());
             Integer Largo = Integer.parseInt(inpLargo.getText());
             Integer count = Ancho * Largo * 100;
@@ -85,16 +91,11 @@ public class interfaz extends javax.swing.JFrame {
             Laberinto lab = new Laberinto(Ancho, Largo, matriz.getCeldas());
             Ventana ventana = new Ventana(lab);
             ventana.crearVentana(ventana, marco, mLista, Ancho, Largo);
-            //for (int i = 0; i < 5; i++) {
-                //System.out.println(pAux.getFrontera() + " " + pAux.getpEste().getFrontera() + " "+ pAux.getpEste().getpEste().getFrontera() +" "+ pAux.getpEste().getpEste().getpEste().getFrontera());
-               // pAux = pAux.getpSur();
-            
-            //}
 
             
-        //} catch (Exception e) {
-            //System.out.println("xD");
-        //}
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error. Valores ingresados no validos");
+        }
 
     }//GEN-LAST:event_btnLaberintoActionPerformed
 
@@ -139,6 +140,7 @@ public class interfaz extends javax.swing.JFrame {
     private javax.swing.JTextField inpLargo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

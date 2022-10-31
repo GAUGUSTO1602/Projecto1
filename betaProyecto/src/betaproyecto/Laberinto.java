@@ -8,8 +8,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 /**
- *
- * @author veronica
+ *Laberinto genera el laberinto en base a los valores que se encuentren en la matriz de la clase Matriz
+ * @author Gabriel González
  */
 public class Laberinto {
     private Integer fila = 0;
@@ -45,8 +45,13 @@ public class Laberinto {
                     grafico.fillRect(columna*40, fila*40, anchoBloque, largoBloque);
                     grafico.setColor(Color.black);
                     grafico.drawRect(columna*40, fila*40, anchoBloque, largoBloque);
-                }else if(x[fila][columna] == 6){
+                }else if(x[fila][columna] == 6 || x[fila][columna] == 8){
                     grafico.setColor(Color.green);
+                    grafico.fillRect(columna*40, fila*40, anchoBloque, largoBloque);
+                    grafico.setColor(Color.black);
+                    grafico.drawRect(columna*40, fila*40, anchoBloque, largoBloque);
+                }else if(x[fila][columna] == 7){
+                    grafico.setColor(Color.yellow);
                     grafico.fillRect(columna*40, fila*40, anchoBloque, largoBloque);
                     grafico.setColor(Color.black);
                     grafico.drawRect(columna*40, fila*40, anchoBloque, largoBloque);

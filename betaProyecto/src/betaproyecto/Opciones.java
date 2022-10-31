@@ -8,8 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author veronica
+ *Muestra las opciones para resolver el laberinto
+ * @author Gabriel González
  */
 public class Opciones extends javax.swing.JFrame {
 JFrame ventana;

@@ -5,11 +5,10 @@
 package betaproyecto;
 
 /**
- *
- * @author veronica
+ *Clase nodo
+ * @author Gabriel González
  */
 public class Nodo <T> {
-    private T data;
     private Integer indice;
     private Integer frontera;
     private Nodo pNext;
@@ -26,11 +25,6 @@ public class Nodo <T> {
     }
 
 
-    public Nodo(T o){
-        this.data = o;
-        this.pNext = this.pPrevious = this.pNorte = this.pSur = this.pEste = this.pOeste = null;
-    }
-
     public Nodo getpPrevious() {
         return pPrevious;
     }
@@ -39,13 +33,6 @@ public class Nodo <T> {
         this.pPrevious = pPrevious;
     }
 
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
-    }
 
     public Nodo getpNext() {
         return pNext;

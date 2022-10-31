@@ -15,6 +15,10 @@ import javax.swing.JPanel;
 public class Ventana extends JPanel {
     private Laberinto laberinto;
 
+    /**
+     *
+     * @param lab
+     */
     public Ventana(Laberinto lab){
         laberinto = lab;
 
@@ -25,6 +29,14 @@ public class Ventana extends JPanel {
         laberinto.paint(grafico);
     }
 
+    /**
+     *Crea la venta en donde se mostrara el laberinto
+     * @param ven
+     * @param marco
+     * @param mLista
+     * @param Ancho
+     * @param Largo
+     */
     public void crearVentana(Ventana ven, Lista marco, Lista mLista, Integer Ancho, Integer Largo){
         JFrame miVentana = new JFrame("Laberinto");
         miVentana.add(ven);

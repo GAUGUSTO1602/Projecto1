@@ -6,28 +6,51 @@ package betaproyecto;
 
 /**
  *Matriz crea uan matriz en donde se colocaran los valores guardados en los nodos de las listas
- * @author Gabriel González
+ * @author Alfredo Herrera
  */
 public class Matriz {
     private Integer [][] celdas; 
 
+    /**
+     *
+     */
     public Matriz(){
         celdas = null; 
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer[][] getCeldas() {
         return celdas;
     }
 
+    /**
+     *
+     * @param celdas
+     */
     public void setCeldas(Integer[][] celdas) {
         this.celdas = celdas;
     }
 
+    /**
+     *Crea la matriz
+     * @param x
+     * @param columnas
+     * @param filas
+     * @return
+     */
     public Integer[][] crearMatriz(Integer[][] x, Integer columnas, Integer filas){
         x = new Integer[filas][columnas];
         return x;
     }
 
+    /**
+     *Ingresa los valores de la lista enviada a la matriz
+     * @param x
+     * @param lista
+     */
     public void ingresarValores(Integer[][] x, Lista lista){
         Nodo pAux = lista.getpFirst();
         for (int i = 1; i < x.length - 1; i++) {
@@ -40,6 +63,11 @@ public class Matriz {
         }
     }
 
+    /**
+     *Ingresa los valores pertenecientes al marco del laberinto a la matriz
+     * @param x
+     * @param lista
+     */
     public void ingresarValoresMarco(Integer[][] x, Lista lista){
         Nodo pAux = lista.getpFirst();
         x[0][0] = pAux.getpOeste().getFrontera();

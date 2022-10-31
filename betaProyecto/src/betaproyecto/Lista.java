@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 /**
  *Clase lista
  * @author Gabriel González
+ * @param <T>
  */
 public class Lista <T> {
     private Nodo <T> pFirst;
@@ -17,61 +18,114 @@ public class Lista <T> {
     private Nodo <T> pSalida;
     private int size;
 
+    /**
+     *
+     */
     public Lista(){
         pFirst = pLast = null;
         size = 0;
     }
 
+    /**
+     *
+     * @return
+     */
     public Nodo<T> getpFirst() {
         return pFirst;
     }
 
+    /**
+     *
+     * @param pFirst
+     */
     public void setpFirst(Nodo<T> pFirst) {
         this.pFirst = pFirst;
     }
 
+    /**
+     *
+     * @return
+     */
     public Nodo<T> getpLast() {
         return pLast;
     }
 
+    /**
+     *
+     * @param pLast
+     */
     public void setpLast(Nodo<T> pLast) {
         this.pLast = pLast;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getSize() {
         return size;
     }
 
+    /**
+     *
+     * @param size
+     */
     public void setSize(int size) {
         this.size = size;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean esVacio() {
         return pFirst == null;
     }
 
+    /**
+     *
+     */
     public void Vaciar() {
         this.pFirst = this.pLast = null;
         this.size = 0;
     }
 
+    /**
+     *
+     * @return
+     */
     public Nodo<T> getpEntrada() {
         return pEntrada;
     }
 
+    /**
+     *
+     * @param pEntrada
+     */
     public void setpEntrada(Nodo<T> pEntrada) {
         this.pEntrada = pEntrada;
     }
 
+    /**
+     *
+     * @return
+     */
     public Nodo<T> getpSalida() {
         return pSalida;
     }
 
+    /**
+     *
+     * @param pSalida
+     */
     public void setpSalida(Nodo<T> pSalida) {
         this.pSalida = pSalida;
     }
 
-
+    /**
+     *Añade un nodo al finañl de la lista
+     * @param x
+     */
     public void añadirAlFinalAux(Nodo x){
         Nodo nuevo = x;
         if(esVacio()) {
@@ -85,7 +139,12 @@ public class Lista <T> {
         }
     }
 
-
+    /**
+     *crea una lista de adyacencia con forma de matriz
+     * @param Ancho
+     * @param Largo
+     * @return
+     */
     public Lista crearMLista(Integer Ancho, Integer Largo){
         Lista lista = new Lista();
         Integer num = 1;
@@ -127,6 +186,13 @@ public class Lista <T> {
             
     }
 
+    /**
+     *Crea el marco con el cual se cubrira el laberinto generado
+     * @param x
+     * @param ancho
+     * @param Largo
+     * @return
+     */
     public Lista crearMarco(Nodo x, Integer ancho, Integer Largo){
         Lista marco = new Lista();
         Nodo pAux = x;
@@ -218,6 +284,11 @@ public class Lista <T> {
         return marco;
     }
 
+    /**
+     *Crea el laberinto usando un algoritmo parecido al algoritmo de Prim
+     * @param lista
+     * @param count
+     */
     public void Prim(Lista lista, Integer count){
         Nodo pAux = lista.getpFirst();
         pAux.setFrontera(1);
@@ -272,6 +343,11 @@ public class Lista <T> {
         }
     }
 
+    /**
+     *Comprueba si un blouqe o celda del laberinto es un muro perteneciente al borde del laberinto
+     * @param x
+     * @return
+     */
     public Boolean comprobarMuro(Nodo x){
         if(x.getFrontera() == 2){
             return false;
@@ -280,6 +356,13 @@ public class Lista <T> {
         }
     }
 
+    /**
+     *Comprueba los nodos o casillas adyacentes a un Nodo enviado
+     * El objetivo es comprobar que no hayan casillas libres alrededor del nodo enviado
+     * @param x
+     * @param i
+     * @return
+     */
     public Boolean comprobarFrontera(Nodo x, Integer i){
         if( i == 0 && ( x.getpEste().getFrontera() == 1 || x.getpNorte().getFrontera() == 1 || x.getpSur().getFrontera() == 1)){
             return false;
@@ -293,6 +376,12 @@ public class Lista <T> {
         return true;
     }
 
+    /**
+     * Busca una casilla que sea adyacente aun casilla libre dle laberinto y la marca como la entrada a este mismo
+     * @param lista
+     * @param Ancho
+     * @param Largo
+     */
     public void marcarEntrada(Lista lista, Integer Ancho, Integer Largo){
         Nodo pAux = lista.getpFirst();
         Integer indice = Ancho + Largo;
@@ -317,6 +406,12 @@ public class Lista <T> {
         }
     }
 
+    /**
+     * Busca una casilla que sea adyacente aun casilla libre dle laberinto y la marca como la salida a este mismo
+     * @param lista
+     * @param Ancho
+     * @param Largo
+     */
     public void marcarSalida(Lista lista, Integer Ancho, Integer Largo){
         Nodo pAux = lista.getpFirst();
         Integer indice = Ancho + Largo;
@@ -341,6 +436,12 @@ public class Lista <T> {
         }
     }
 
+    /**
+     * Comprueba e valor frontera de las casillas adyacentes
+     * @param x
+     * @param i
+     * @return
+     */
     public Boolean comprobarAlr(Nodo x, Integer i){
         if(x.getpEste() != null && x.getpEste().getFrontera() == i){
             return true;
@@ -354,6 +455,11 @@ public class Lista <T> {
         return false;
     }
 
+    /**
+     *Algoritmo DFS para solucionar el laberinto
+     * @param lista
+     * @param mLista
+     */
     public void DFS(Lista lista, Lista mLista ){
         long startTime = System.currentTimeMillis();
 
@@ -443,7 +549,12 @@ public class Lista <T> {
         JOptionPane.showMessageDialog(null, "Tiempo de ejecución: " + (endTime - startTime));
     }
 
-
+    /**
+     * Comprueba la posición incial y se mueve a uan posición disponible que concuerde con el valor frontera solicitado
+     * @param x
+     * @param i
+     * @return
+     */
     public Nodo moverse(Nodo x, Integer i){
         if(x.getpNorte() != null && x.getpNorte().getFrontera() == i){
             x = x.getpNorte();

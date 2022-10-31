@@ -9,7 +9,7 @@ import java.awt.Graphics;
 
 /**
  *Laberinto genera el laberinto en base a los valores que se encuentren en la matriz de la clase Matriz
- * @author Gabriel González
+ * @author Alfredo Herrera
  */
 public class Laberinto {
     private Integer fila = 0;
@@ -20,12 +20,22 @@ public class Laberinto {
     private Integer largoBloque = 40;
     private Integer[][] matriz;
 
+    /**
+     *
+     * @param columnas
+     * @param filas
+     * @param x
+     */
     public Laberinto(Integer columnas, Integer filas, Integer[][] x){
         numFilas = filas;
         numColumnas = columnas;
         matriz = x;
     }
 
+    /**
+     *Crea el grafico del laberinto
+     * @param grafico
+     */
     public void paint(Graphics grafico){
        Integer[][] x = matriz;
         for (fila = 0; fila < numFilas; fila++) {

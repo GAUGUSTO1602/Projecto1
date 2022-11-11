@@ -74,7 +74,7 @@ public class interfaz extends javax.swing.JFrame {
         try {
             Integer Ancho = Integer.parseInt(inpAncho.getText());
             Integer Largo = Integer.parseInt(inpLargo.getText());
-            Integer count = Ancho * Largo * 100;
+            Integer count = Ancho * Largo * 1000;
             Lista mLista = new Lista();
             Lista marco = new Lista();
             mLista = mLista.crearMLista(Ancho, Largo);

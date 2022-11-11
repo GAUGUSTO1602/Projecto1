@@ -123,7 +123,7 @@ public class Lista <T> {
     }
 
     /**
-     *Añade un nodo al finañl de la lista
+     *Añade un nodo al final de la lista
      * @param x
      */
     public void añadirAlFinalAux(Nodo x){
@@ -140,7 +140,7 @@ public class Lista <T> {
     }
 
     /**
-     *crea una lista de adyacencia con forma de matriz
+     *Crea una lista de adyacencia organizada en orden para que se asemeje a una matriz
      * @param Ancho
      * @param Largo
      * @return
@@ -358,7 +358,7 @@ public class Lista <T> {
 
     /**
      *Comprueba los nodos o casillas adyacentes a un Nodo enviado
-     * El objetivo es comprobar que no hayan casillas libres alrededor del nodo enviado
+     * El objetivo es comprobar que no hayan casillas con un determinado valor alrededor del nodo enviado
      * @param x
      * @param i
      * @return
@@ -377,7 +377,7 @@ public class Lista <T> {
     }
 
     /**
-     * Busca una casilla que sea adyacente aun casilla libre dle laberinto y la marca como la entrada a este mismo
+     * Busca una casilla que sea adyacente a una casilla libre del laberinto y la marca como la entrada a este mismo
      * @param lista
      * @param Ancho
      * @param Largo
@@ -407,7 +407,7 @@ public class Lista <T> {
     }
 
     /**
-     * Busca una casilla que sea adyacente aun casilla libre dle laberinto y la marca como la salida a este mismo
+     * Busca una casilla que sea adyacente a una casilla libre del laberinto y la marca como la salida a este mismo
      * @param lista
      * @param Ancho
      * @param Largo
@@ -466,9 +466,12 @@ public class Lista <T> {
         Nodo pAux = lista.getpEntrada();
         Boolean fin = false;
         Integer i = 5;
-        pAux = moverse(pAux, 1);
+        pAux = moverse(pAux, 1, 6);
         while(fin == false){
-            if(pAux.getpNorte().getFrontera() == 1){
+            if(comprobarAlr(pAux, i) == true){
+                        fin = true;
+                        break;
+            } else if(pAux.getpNorte().getFrontera() == 1){
                 while(pAux.getpNorte().getFrontera() != 0 && pAux.getpNorte().getFrontera() != 2 ){
                     pAux = pAux.getpNorte();
                     pAux.setFrontera(6);
@@ -535,7 +538,7 @@ public class Lista <T> {
                         fin = true;
                         break;
                     }else if( pAux.getFrontera() == 6 && comprobarAlr(pAux, 1) == true){
-                        pAux = moverse(pAux, 1);
+                        pAux = moverse(pAux, 1, 6);
                         break;
                     }
                     pAux = pAux.getpNext();
@@ -546,31 +549,31 @@ public class Lista <T> {
             }
         }
         long endTime = System.currentTimeMillis();
-        JOptionPane.showMessageDialog(null, "Tiempo de ejecución: " + (endTime - startTime));
+        JOptionPane.showMessageDialog(null, "Tiempo de ejecución: " + (endTime - startTime) + " milisegundos");
     }
 
     /**
-     * Comprueba la posición incial y se mueve a uan posición disponible que concuerde con el valor frontera solicitado
+     * Comprueba la posición incial y se mueve a una posición disponible que concuerde con el valor frontera solicitado
      * @param x
      * @param i
      * @return
      */
-    public Nodo moverse(Nodo x, Integer i){
+    public Nodo moverse(Nodo x, Integer i, Integer j){
         if(x.getpNorte() != null && x.getpNorte().getFrontera() == i){
             x = x.getpNorte();
-            x.setFrontera(6);
+            x.setFrontera(j);
             return x;
         }else if (x.getpSur() != null && x.getpSur().getFrontera() == i){
             x = x.getpSur();
-            x.setFrontera(6);
+            x.setFrontera(j);
             return x;
         }else if (x.getpOeste() != null && x.getpOeste().getFrontera() == i){
             x = x.getpOeste();
-            x.setFrontera(6);
+            x.setFrontera(j);
             return x;
         }else{
             x = x.getpEste();
-            x.setFrontera(6);
+            x.setFrontera(j);
             return x;
         }
     }
